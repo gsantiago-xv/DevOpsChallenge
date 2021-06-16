@@ -18,7 +18,7 @@ jobs:
     - name: Build
       run: cd src; dotnet build MyWebApp.sln -o publish
     - name: Test
-      run: dotnet test --filter ClassName=MSTest.Project.ByAlphabeticalOrder
+      run: cd src; dotnet test --filter ClassName=MSTest.Project.ByAlphabeticalOrder
     #FM
 
     #- uses: actions/checkout@v2
