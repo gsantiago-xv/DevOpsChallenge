@@ -7,7 +7,7 @@ RUN cd src/MyWebApp \
 && cd ../ \
 && dotnet build MyWebApp.sln -o /app/publish
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+ENV ASPNETCORE_ENVIRONMENT="Development"
 COPY --from=build /app/publish .
-EXPOSE 5000
-ENV ASPNETCORE_URLS=https://*:5000
+EXPOSE 80
 ENTRYPOINT ["dotnet", "MyWebApp.dll"]
