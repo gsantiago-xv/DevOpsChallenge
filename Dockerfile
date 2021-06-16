@@ -8,5 +8,5 @@ RUN cd src/MyWebApp \
 && dotnet build MyWebApp.sln -o /app/publish
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 COPY --from=build /app/publish .
-EXPOSE 80
+EXPOSE 8081
 ENTRYPOINT ["dotnet", "MyWebApp.dll"]
