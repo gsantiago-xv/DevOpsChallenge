@@ -1,4 +1,4 @@
-name: Linux Container Node Workflow
+name: Deploy Application WeatherForecast Dev
 
 on:
   push:
@@ -16,8 +16,10 @@ jobs:
         username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
     - run: |
+        cd src ; dotnet build MyWebApp.sln -o /app/publish ; dotnet test --filter ClassName=MSTest.Project.ByAlphabeticalOrder
         docker build . -t ${{ secrets.AZURE_REGISTRY_USERNAME }}.azurecr.io/nibodocker-dev:${{ github.sha }}
         docker push ${{ secrets.AZURE_REGISTRY_USERNAME }}.azurecr.io/nibodocker-dev:${{ github.sha }} 
+        
   deploy:
     needs: build
     runs-on: ubuntu-latest
