@@ -1,4 +1,4 @@
-name: Linux Container Node Workflow
+name: Deploy Application WeatherForecast Prod
 
 on:
   push:
@@ -20,6 +20,7 @@ jobs:
         docker push ${{ secrets.AZURE_REGISTRY_USERNAME }}.azurecr.io/nibodocker-prod:${{ github.sha }} 
   
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     
     steps:
