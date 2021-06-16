@@ -7,6 +7,7 @@ RUN cd src/MyWebApp \
 && cd ../ \
 && dotnet build MyWebApp.sln -o /app/publish
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+ENV ASPNETCORE_ENVIRONMENT="Production"
 COPY --from=build /app/publish .
 EXPOSE 80
 ENTRYPOINT ["dotnet", "MyWebApp.dll"]
