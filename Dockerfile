@@ -6,6 +6,7 @@ RUN cd src/MyWebApp \
 && dotnet restore MyWebApp.csproj \
 && cd ../ \
 && dotnet build MyWebApp.sln -o /app/publish
+&& dotnet test --filter Name~MS
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 ENV ASPNETCORE_ENVIRONMENT="Development"
 WORKDIR /app
