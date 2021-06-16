@@ -4,7 +4,7 @@ COPY src /app/src
 WORKDIR /app
 RUN cd src/ \ 
 && dotnet build MyWebApp.sln -o /app/publish \
-&& dotnet test --filter Tests.MSTest
+&& dotnet test --filter DisplayName=MSTest.Project.ByAlphabeticalOrder
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 ENV ASPNETCORE_ENVIRONMENT="Development"
 WORKDIR /app
