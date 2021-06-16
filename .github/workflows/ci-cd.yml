@@ -18,7 +18,10 @@ jobs:
     - run: |
         docker build . -t ${{ secrets.AZURE_REGISTRY_USERNAME }}.azurecr.io/nibodocker-dev:${{ github.sha }}
         docker push ${{ secrets.AZURE_REGISTRY_USERNAME }}.azurecr.io/nibodocker-dev:${{ github.sha }} 
-    
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+  
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'nibodocker-dev'
